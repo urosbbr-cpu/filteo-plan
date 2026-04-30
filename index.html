@@ -1,305 +1,437 @@
 <!DOCTYPE html>
-<html lang="sr">
+<html lang="sv">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Filteo — Plan razvoja</title>
-  <script src="https://cdn.tailwindcss.com"></script>
-  <style>
-    @keyframes pulse-dot { 0%, 100% { opacity: 1; } 50% { opacity: 0.5; } }
-    .pulse-dot { animation: pulse-dot 2s ease-in-out infinite; }
-    body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; }
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Filteo AB — Utvecklingsplan 2026</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+body { font-family: 'Inter', sans-serif; }
+.gradient-header { background: linear-gradient(135deg, #1a1f2e 0%, #2d3548 100%); }
+.card-hover { transition: all 0.2s; }
+.card-hover:hover { transform: translateY(-2px); box-shadow: 0 8px 25px rgba(0,0,0,0.1); }
+.phase-line { position: relative; }
+.phase-line::before { content: ''; position: absolute; left: 19px; top: 48px; bottom: 0; width: 2px; background: #e5e7eb; }
+.status-done { background: linear-gradient(135deg, #10b981, #059669); }
+.status-active { background: linear-gradient(135deg, #f5a623, #e09510); }
+.status-planned { background: linear-gradient(135deg, #6366f1, #4f46e5); }
+.status-idea { background: linear-gradient(135deg, #8b5cf6, #7c3aed); }
+.progress-bar { height: 6px; border-radius: 3px; background: #e5e7eb; overflow: hidden; }
+.progress-fill { height: 100%; border-radius: 3px; transition: width 0.5s; }
+</style>
 </head>
-<body class="min-h-screen bg-gray-50 p-4 md:p-8">
-  <div class="max-w-5xl mx-auto">
+<body class="bg-gray-50 min-h-screen">
 
-    <!-- Header banner -->
-    <div class="relative overflow-hidden rounded-2xl bg-gradient-to-r from-[#1a1a2e] to-[#16213e] p-8 mb-8 shadow-xl">
-      <div class="absolute top-0 right-0 w-64 h-64 bg-[#f5a623] opacity-10 rounded-full -translate-y-1/2 translate-x-1/2"></div>
-      <div class="absolute bottom-0 left-0 w-48 h-48 bg-blue-500 opacity-10 rounded-full translate-y-1/2 -translate-x-1/2"></div>
-      <div class="relative">
-        <div class="inline-flex items-center gap-2 bg-green-500/20 text-green-300 text-sm font-semibold px-4 py-1.5 rounded-full mb-4 border border-green-500/30">
-          <span class="w-2 h-2 bg-green-400 rounded-full pulse-dot"></span>
-          Faza Ekonomija — implementirano ✓
-        </div>
-        <h1 class="text-3xl md:text-4xl font-bold text-white mb-2">
-          Filteo — Plan razvoja
-        </h1>
-        <p class="text-gray-300 text-lg">
-          Spreman plan za buduće funkcionalnosti • 13 planiranih funkcija u 3 faze
-        </p>
-        <div class="flex gap-6 mt-6">
-          <div class="text-center">
-            <div class="text-2xl font-bold text-[#f5a623]">4</div>
-            <div class="text-xs text-gray-400">Visok prioritet</div>
-          </div>
-          <div class="text-center">
-            <div class="text-2xl font-bold text-blue-400">5</div>
-            <div class="text-xs text-gray-400">Srednji prioritet</div>
-          </div>
-          <div class="text-center">
-            <div class="text-2xl font-bold text-purple-400">4</div>
-            <div class="text-xs text-gray-400">Budućnost</div>
-          </div>
-        </div>
-      </div>
+<!-- Header -->
+<div class="gradient-header text-white">
+  <div class="max-w-5xl mx-auto px-4 py-10 md:py-16">
+    <div class="flex items-center gap-3 mb-2">
+      <div class="w-10 h-10 rounded-xl bg-[#f5a623] flex items-center justify-center font-bold text-lg">F</div>
+      <span class="text-xs uppercase tracking-widest text-gray-400">Filteo AB</span>
     </div>
+    <h1 class="text-3xl md:text-4xl font-extrabold mb-2">Utvecklingsplan 2026</h1>
+    <p class="text-gray-400 text-sm md:text-base max-w-2xl">
+      Komplett plan för vidareutveckling av Filteo-systemet. Från nuvarande 25 600 rader kod,
+      28 datamodeller och 87 API-endpoints — vidare mot ett ännu smartare system.
+    </p>
 
-    <!-- Completed section -->
-    <div class="mb-8 p-5 rounded-xl bg-gradient-to-r from-green-50 to-emerald-50 border border-green-200">
-      <h3 class="text-lg font-bold text-green-800 mb-3 flex items-center gap-2">
-        ✅ Završeno — Ekonomija modul (April 2026)
-      </h3>
-      <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-2">
-        <div class="flex items-center gap-2 text-sm text-green-700"><span class="text-green-500 flex-shrink-0">✓</span>WorkLogType — tipovi sati</div>
-        <div class="flex items-center gap-2 text-sm text-green-700"><span class="text-green-500 flex-shrink-0">✓</span>DailyEntry — dnevni unos</div>
-        <div class="flex items-center gap-2 text-sm text-green-700"><span class="text-green-500 flex-shrink-0">✓</span>Reports — mesečni izveštaji</div>
-        <div class="flex items-center gap-2 text-sm text-green-700"><span class="text-green-500 flex-shrink-0">✓</span>Revisor — portal za računovođu</div>
-        <div class="flex items-center gap-2 text-sm text-green-700"><span class="text-green-500 flex-shrink-0">✓</span>Excel export + print</div>
-        <div class="flex items-center gap-2 text-sm text-green-700"><span class="text-green-500 flex-shrink-0">✓</span>Billing profiles na lokacijama</div>
-        <div class="flex items-center gap-2 text-sm text-green-700"><span class="text-green-500 flex-shrink-0">✓</span>Invoice generisanje + upravljanje</div>
+    <!-- Stats -->
+    <div class="flex flex-wrap gap-6 mt-8">
+      <div class="text-center">
+        <div class="text-2xl font-bold text-[#f5a623]">25 600</div>
+        <div class="text-[10px] uppercase tracking-wide text-gray-500">Rader kod</div>
       </div>
-    </div>
-
-    <!-- Phase 1: High Priority -->
-    <div class="mb-8">
-      <div class="flex items-center gap-3 mb-4">
-        <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-green-500 to-emerald-600 flex items-center justify-center text-lg shadow-md">🚀</div>
-        <div>
-          <h2 class="text-xl font-bold text-gray-800">Visok prioritet</h2>
-          <p class="text-sm text-gray-500">Odmah korisno — sledeće na redu</p>
-        </div>
+      <div class="text-center">
+        <div class="text-2xl font-bold text-green-400">28</div>
+        <div class="text-[10px] uppercase tracking-wide text-gray-500">Datamodeller</div>
       </div>
-      <div class="grid gap-3">
-        <div class="p-4 rounded-xl bg-green-50 border-green-200 border transition-all hover:shadow-md">
-          <div class="flex items-start justify-between gap-3">
-            <div class="flex-1">
-              <div class="flex items-center gap-2 mb-1">
-                <span class="text-xs font-mono text-gray-400">#1</span>
-                <h3 class="font-semibold text-gray-800">Dashboard statistika</h3>
-              </div>
-              <p class="text-sm text-gray-600">Admin översikt sa grafovima — sati ovog meseca, broj check-in-ova, pending material, nadolazeći extra uppdrag</p>
-            </div>
-            <div class="flex gap-1.5 flex-shrink-0 flex-wrap justify-end">
-              <span class="text-xs px-2 py-0.5 rounded-full font-medium bg-green-100 text-green-800">Admin</span>
-              <span class="text-xs px-2 py-0.5 rounded-full font-medium bg-green-100 text-green-800">UX</span>
-            </div>
-          </div>
-        </div>
-        <div class="p-4 rounded-xl bg-green-50 border-green-200 border transition-all hover:shadow-md">
-          <div class="flex items-start justify-between gap-3">
-            <div class="flex-1">
-              <div class="flex items-center gap-2 mb-1">
-                <span class="text-xs font-mono text-gray-400">#2</span>
-                <h3 class="font-semibold text-gray-800">Notifikacije za zaposlene</h3>
-              </div>
-              <p class="text-sm text-gray-600">Push ili in-app obaveštenja — novi raspored, odobren material, promena smene</p>
-            </div>
-            <div class="flex gap-1.5 flex-shrink-0 flex-wrap justify-end">
-              <span class="text-xs px-2 py-0.5 rounded-full font-medium bg-green-100 text-green-800">Zaposleni</span>
-              <span class="text-xs px-2 py-0.5 rounded-full font-medium bg-green-100 text-green-800">Komunikacija</span>
-            </div>
-          </div>
-        </div>
-        <div class="p-4 rounded-xl bg-green-50 border-green-200 border transition-all hover:shadow-md">
-          <div class="flex items-start justify-between gap-3">
-            <div class="flex-1">
-              <div class="flex items-center gap-2 mb-1">
-                <span class="text-xs font-mono text-gray-400">#3</span>
-                <h3 class="font-semibold text-gray-800">Automatski email podsetnici</h3>
-              </div>
-              <p class="text-sm text-gray-600">Za zaposlene koji nisu uneli sate, ili za extra uppdrag koji ističu</p>
-            </div>
-            <div class="flex gap-1.5 flex-shrink-0 flex-wrap justify-end">
-              <span class="text-xs px-2 py-0.5 rounded-full font-medium bg-green-100 text-green-800">Automatizacija</span>
-              <span class="text-xs px-2 py-0.5 rounded-full font-medium bg-green-100 text-green-800">Email</span>
-            </div>
-          </div>
-        </div>
-        <div class="p-4 rounded-xl bg-green-50 border-green-200 border transition-all hover:shadow-md">
-          <div class="flex items-start justify-between gap-3">
-            <div class="flex-1">
-              <div class="flex items-center gap-2 mb-1">
-                <span class="text-xs font-mono text-gray-400">#4</span>
-                <h3 class="font-semibold text-gray-800">Klijent portal</h3>
-              </div>
-              <p class="text-sm text-gray-600">Read-only login za klijente da vide svoje fakture i status</p>
-            </div>
-            <div class="flex gap-1.5 flex-shrink-0 flex-wrap justify-end">
-              <span class="text-xs px-2 py-0.5 rounded-full font-medium bg-green-100 text-green-800">Klijenti</span>
-              <span class="text-xs px-2 py-0.5 rounded-full font-medium bg-green-100 text-green-800">Portal</span>
-            </div>
-          </div>
-        </div>
+      <div class="text-center">
+        <div class="text-2xl font-bold text-blue-400">87</div>
+        <div class="text-[10px] uppercase tracking-wide text-gray-500">API-endpoints</div>
       </div>
-    </div>
-
-    <!-- Phase 2: Medium Priority -->
-    <div class="mb-8">
-      <div class="flex items-center gap-3 mb-4">
-        <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-blue-500 to-indigo-600 flex items-center justify-center text-lg shadow-md">⚡</div>
-        <div>
-          <h2 class="text-xl font-bold text-gray-800">Srednji prioritet</h2>
-          <p class="text-sm text-gray-500">Poboljšanja postojećih funkcija</p>
-        </div>
+      <div class="text-center">
+        <div class="text-2xl font-bold text-purple-400">184</div>
+        <div class="text-[10px] uppercase tracking-wide text-gray-500">Källfiler</div>
       </div>
-      <div class="grid gap-3">
-        <div class="p-4 rounded-xl bg-blue-50 border-blue-200 border transition-all hover:shadow-md">
-          <div class="flex items-start justify-between gap-3">
-            <div class="flex-1">
-              <div class="flex items-center gap-2 mb-1">
-                <span class="text-xs font-mono text-gray-400">#5</span>
-                <h3 class="font-semibold text-gray-800">Kalendarski pregled rasporeda</h3>
-              </div>
-              <p class="text-sm text-gray-600">Drag & drop smene umesto liste — vizuelni kalendar</p>
-            </div>
-            <div class="flex gap-1.5 flex-shrink-0 flex-wrap justify-end">
-              <span class="text-xs px-2 py-0.5 rounded-full font-medium bg-blue-100 text-blue-800">Raspored</span>
-              <span class="text-xs px-2 py-0.5 rounded-full font-medium bg-blue-100 text-blue-800">UX</span>
-            </div>
-          </div>
-        </div>
-        <div class="p-4 rounded-xl bg-blue-50 border-blue-200 border transition-all hover:shadow-md">
-          <div class="flex items-start justify-between gap-3">
-            <div class="flex-1">
-              <div class="flex items-center gap-2 mb-1">
-                <span class="text-xs font-mono text-gray-400">#6</span>
-                <h3 class="font-semibold text-gray-800">Mobilna optimizacija check-in-a</h3>
-              </div>
-              <p class="text-sm text-gray-600">GPS verifikacija da je zaposleni na lokaciji prilikom check-in-a</p>
-            </div>
-            <div class="flex gap-1.5 flex-shrink-0 flex-wrap justify-end">
-              <span class="text-xs px-2 py-0.5 rounded-full font-medium bg-blue-100 text-blue-800">Mobilno</span>
-              <span class="text-xs px-2 py-0.5 rounded-full font-medium bg-blue-100 text-blue-800">GPS</span>
-            </div>
-          </div>
-        </div>
-        <div class="p-4 rounded-xl bg-blue-50 border-blue-200 border transition-all hover:shadow-md">
-          <div class="flex items-start justify-between gap-3">
-            <div class="flex-1">
-              <div class="flex items-center gap-2 mb-1">
-                <span class="text-xs font-mono text-gray-400">#7</span>
-                <h3 class="font-semibold text-gray-800">Foto dokumentacija</h3>
-              </div>
-              <p class="text-sm text-gray-600">Zaposleni slikaju pre/posle čišćenja, vezano za check-in</p>
-            </div>
-            <div class="flex gap-1.5 flex-shrink-0 flex-wrap justify-end">
-              <span class="text-xs px-2 py-0.5 rounded-full font-medium bg-blue-100 text-blue-800">Foto</span>
-              <span class="text-xs px-2 py-0.5 rounded-full font-medium bg-blue-100 text-blue-800">Kvalitet</span>
-            </div>
-          </div>
-        </div>
-        <div class="p-4 rounded-xl bg-blue-50 border-blue-200 border transition-all hover:shadow-md">
-          <div class="flex items-start justify-between gap-3">
-            <div class="flex-1">
-              <div class="flex items-center gap-2 mb-1">
-                <span class="text-xs font-mono text-gray-400">#8</span>
-                <h3 class="font-semibold text-gray-800">Recurring extra uppdrag</h3>
-              </div>
-              <p class="text-sm text-gray-600">Ponavljajući extra poslovi — npr. svaki mesec automatski</p>
-            </div>
-            <div class="flex gap-1.5 flex-shrink-0 flex-wrap justify-end">
-              <span class="text-xs px-2 py-0.5 rounded-full font-medium bg-blue-100 text-blue-800">Automatizacija</span>
-              <span class="text-xs px-2 py-0.5 rounded-full font-medium bg-blue-100 text-blue-800">Extra</span>
-            </div>
-          </div>
-        </div>
-        <div class="p-4 rounded-xl bg-blue-50 border-blue-200 border transition-all hover:shadow-md">
-          <div class="flex items-start justify-between gap-3">
-            <div class="flex-1">
-              <div class="flex items-center gap-2 mb-1">
-                <span class="text-xs font-mono text-gray-400">#9</span>
-                <h3 class="font-semibold text-gray-800">Lönrapport</h3>
-              </div>
-              <p class="text-sm text-gray-600">Mesečni obračun plata na osnovu sati i löntyp (timlon/månadslon)</p>
-            </div>
-            <div class="flex gap-1.5 flex-shrink-0 flex-wrap justify-end">
-              <span class="text-xs px-2 py-0.5 rounded-full font-medium bg-blue-100 text-blue-800">Plate</span>
-              <span class="text-xs px-2 py-0.5 rounded-full font-medium bg-blue-100 text-blue-800">Izveštaj</span>
-            </div>
-          </div>
-        </div>
+      <div class="text-center">
+        <div class="text-2xl font-bold text-white">4</div>
+        <div class="text-[10px] uppercase tracking-wide text-gray-500">Användarroller</div>
       </div>
-    </div>
-
-    <!-- Phase 3: Future -->
-    <div class="mb-8">
-      <div class="flex items-center gap-3 mb-4">
-        <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-purple-500 to-violet-600 flex items-center justify-center text-lg shadow-md">🔮</div>
-        <div>
-          <h2 class="text-xl font-bold text-gray-800">Budućnost</h2>
-          <p class="text-sm text-gray-500">Kad firma poraste — skaliranje</p>
-        </div>
-      </div>
-      <div class="grid gap-3">
-        <div class="p-4 rounded-xl bg-purple-50 border-purple-200 border transition-all hover:shadow-md">
-          <div class="flex items-start justify-between gap-3">
-            <div class="flex-1">
-              <div class="flex items-center gap-2 mb-1">
-                <span class="text-xs font-mono text-gray-400">#10</span>
-                <h3 class="font-semibold text-gray-800">Multi-company</h3>
-              </div>
-              <p class="text-sm text-gray-600">Više firmi na istoj platformi — white-label rešenje</p>
-            </div>
-            <div class="flex gap-1.5 flex-shrink-0 flex-wrap justify-end">
-              <span class="text-xs px-2 py-0.5 rounded-full font-medium bg-purple-100 text-purple-800">Skaliranje</span>
-              <span class="text-xs px-2 py-0.5 rounded-full font-medium bg-purple-100 text-purple-800">SaaS</span>
-            </div>
-          </div>
-        </div>
-        <div class="p-4 rounded-xl bg-purple-50 border-purple-200 border transition-all hover:shadow-md">
-          <div class="flex items-start justify-between gap-3">
-            <div class="flex-1">
-              <div class="flex items-center gap-2 mb-1">
-                <span class="text-xs font-mono text-gray-400">#11</span>
-                <h3 class="font-semibold text-gray-800">API integracije</h3>
-              </div>
-              <p class="text-sm text-gray-600">Fortnox/Visma za fakturiranje, BankID za login</p>
-            </div>
-            <div class="flex gap-1.5 flex-shrink-0 flex-wrap justify-end">
-              <span class="text-xs px-2 py-0.5 rounded-full font-medium bg-purple-100 text-purple-800">Integracija</span>
-              <span class="text-xs px-2 py-0.5 rounded-full font-medium bg-purple-100 text-purple-800">Fortnox</span>
-            </div>
-          </div>
-        </div>
-        <div class="p-4 rounded-xl bg-purple-50 border-purple-200 border transition-all hover:shadow-md">
-          <div class="flex items-start justify-between gap-3">
-            <div class="flex-1">
-              <div class="flex items-center gap-2 mb-1">
-                <span class="text-xs font-mono text-gray-400">#12</span>
-                <h3 class="font-semibold text-gray-800">Automatsko fakturiranje</h3>
-              </div>
-              <p class="text-sm text-gray-600">Pošalji fakture direktno klijentu emailom — bez ručnog slanja</p>
-            </div>
-            <div class="flex gap-1.5 flex-shrink-0 flex-wrap justify-end">
-              <span class="text-xs px-2 py-0.5 rounded-full font-medium bg-purple-100 text-purple-800">Fakture</span>
-              <span class="text-xs px-2 py-0.5 rounded-full font-medium bg-purple-100 text-purple-800">Email</span>
-            </div>
-          </div>
-        </div>
-        <div class="p-4 rounded-xl bg-purple-50 border-purple-200 border transition-all hover:shadow-md">
-          <div class="flex items-start justify-between gap-3">
-            <div class="flex-1">
-              <div class="flex items-center gap-2 mb-1">
-                <span class="text-xs font-mono text-gray-400">#13</span>
-                <h3 class="font-semibold text-gray-800">SLA praćenje</h3>
-              </div>
-              <p class="text-sm text-gray-600">Koliko puta je lokacija očišćena vs ugovoreno — kvalitet servisa</p>
-            </div>
-            <div class="flex gap-1.5 flex-shrink-0 flex-wrap justify-end">
-              <span class="text-xs px-2 py-0.5 rounded-full font-medium bg-purple-100 text-purple-800">Kvalitet</span>
-              <span class="text-xs px-2 py-0.5 rounded-full font-medium bg-purple-100 text-purple-800">SLA</span>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- Footer -->
-    <div class="text-center py-8 text-sm text-gray-400">
-      Filteo AB • Plan ažuriran april 2026
     </div>
   </div>
+</div>
+
+<!-- Current System Banner -->
+<div class="max-w-5xl mx-auto px-4 -mt-5">
+  <div class="bg-white rounded-2xl border border-gray-200 shadow-lg p-5">
+    <div class="flex items-center gap-2 mb-3">
+      <span class="w-2 h-2 rounded-full bg-green-500 animate-pulse"></span>
+      <span class="text-sm font-bold text-gray-800">Implementerat och i drift</span>
+    </div>
+    <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-2 text-xs">
+      <span class="bg-green-50 text-green-700 px-2 py-1.5 rounded-lg font-medium text-center">Personal</span>
+      <span class="bg-green-50 text-green-700 px-2 py-1.5 rounded-lg font-medium text-center">Objekt & kartor</span>
+      <span class="bg-green-50 text-green-700 px-2 py-1.5 rounded-lg font-medium text-center">Schema + D&D</span>
+      <span class="bg-green-50 text-green-700 px-2 py-1.5 rounded-lg font-medium text-center">GPS Check-in</span>
+      <span class="bg-green-50 text-green-700 px-2 py-1.5 rounded-lg font-medium text-center">Tidsrapportering</span>
+      <span class="bg-green-50 text-green-700 px-2 py-1.5 rounded-lg font-medium text-center">Löner</span>
+      <span class="bg-green-50 text-green-700 px-2 py-1.5 rounded-lg font-medium text-center">Fakturering</span>
+      <span class="bg-green-50 text-green-700 px-2 py-1.5 rounded-lg font-medium text-center">CRM / Leads</span>
+      <span class="bg-green-50 text-green-700 px-2 py-1.5 rounded-lg font-medium text-center">Extra uppdrag</span>
+      <span class="bg-green-50 text-green-700 px-2 py-1.5 rounded-lg font-medium text-center">Kundportal</span>
+      <span class="bg-green-50 text-green-700 px-2 py-1.5 rounded-lg font-medium text-center">Notifikationer</span>
+      <span class="bg-green-50 text-green-700 px-2 py-1.5 rounded-lg font-medium text-center">Fotodokumentation</span>
+      <span class="bg-green-50 text-green-700 px-2 py-1.5 rounded-lg font-medium text-center">PDF & Excel</span>
+      <span class="bg-green-50 text-green-700 px-2 py-1.5 rounded-lg font-medium text-center">AI-förslag (Claude)</span>
+      <span class="bg-green-50 text-green-700 px-2 py-1.5 rounded-lg font-medium text-center">Månadsvy kalender</span>
+      <span class="bg-green-50 text-green-700 px-2 py-1.5 rounded-lg font-medium text-center">Dashboard KPI</span>
+      <span class="bg-green-50 text-green-700 px-2 py-1.5 rounded-lg font-medium text-center">Flerspråkigt (4 spr.)</span>
+      <span class="bg-green-50 text-green-700 px-2 py-1.5 rounded-lg font-medium text-center">Frånvarohantering</span>
+    </div>
+  </div>
+</div>
+
+<main class="max-w-5xl mx-auto px-4 py-10 space-y-12">
+
+  <!-- ===== PHASE 1: HIGH PRIORITY ===== -->
+  <section>
+    <div class="flex items-center gap-3 mb-6">
+      <div class="w-10 h-10 rounded-xl status-active flex items-center justify-center text-white text-lg shadow-md">1</div>
+      <div>
+        <h2 class="text-xl font-bold text-gray-900">Hög prioritet — Direkt affärsnytta</h2>
+        <p class="text-sm text-gray-500">Funktioner som ger omedelbar förbättring för kunder och personal</p>
+      </div>
+    </div>
+
+    <div class="grid gap-4">
+
+      <!-- 1. Kundfeedback -->
+      <div class="bg-white rounded-xl border border-gray-200 p-5 card-hover">
+        <div class="flex items-start justify-between gap-3">
+          <div class="flex-1">
+            <div class="flex items-center gap-2 mb-1">
+              <span class="text-xs font-mono text-gray-400">#1</span>
+              <h3 class="font-bold text-gray-900">Kundfeedback efter städning</h3>
+              <span class="text-xs px-2 py-0.5 rounded-full bg-amber-100 text-amber-700 font-medium">Planerad</span>
+            </div>
+            <p class="text-sm text-gray-600 mb-3">Automatisk enkät till kund efter varje avslutat pass. Betyg 1-5 + fritext. Kvalitetsöversikt per anställd och objekt i admin.</p>
+            <div class="flex gap-1.5 flex-wrap">
+              <span class="text-xs px-2 py-0.5 rounded-full bg-blue-100 text-blue-700">Kundnöjdhet</span>
+              <span class="text-xs px-2 py-0.5 rounded-full bg-purple-100 text-purple-700">Kvalitet</span>
+            </div>
+          </div>
+          <div class="text-right text-xs text-gray-400 flex-shrink-0">
+            <div class="font-semibold text-amber-600">HÖG</div>
+            <div>~3 dagar</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 2. SMS -->
+      <div class="bg-white rounded-xl border border-gray-200 p-5 card-hover">
+        <div class="flex items-start justify-between gap-3">
+          <div class="flex-1">
+            <div class="flex items-center gap-2 mb-1">
+              <span class="text-xs font-mono text-gray-400">#2</span>
+              <h3 class="font-bold text-gray-900">SMS-notifikationer</h3>
+              <span class="text-xs px-2 py-0.5 rounded-full bg-amber-100 text-amber-700 font-medium">Planerad</span>
+            </div>
+            <p class="text-sm text-gray-600 mb-3">SMS för akuta schemaändringar och påminnelser. Integration med 46elks (svensk SMS-leverantör). Komplement till in-app-notiser.</p>
+            <div class="flex gap-1.5 flex-wrap">
+              <span class="text-xs px-2 py-0.5 rounded-full bg-blue-100 text-blue-700">Kommunikation</span>
+              <span class="text-xs px-2 py-0.5 rounded-full bg-green-100 text-green-700">Integration</span>
+            </div>
+          </div>
+          <div class="text-right text-xs text-gray-400 flex-shrink-0">
+            <div class="font-semibold text-amber-600">HÖG</div>
+            <div>~2 dagar</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 3. Recurring extra uppdrag -->
+      <div class="bg-white rounded-xl border border-gray-200 p-5 card-hover">
+        <div class="flex items-start justify-between gap-3">
+          <div class="flex-1">
+            <div class="flex items-center gap-2 mb-1">
+              <span class="text-xs font-mono text-gray-400">#3</span>
+              <h3 class="font-bold text-gray-900">Återkommande extra uppdrag</h3>
+              <span class="text-xs px-2 py-0.5 rounded-full bg-amber-100 text-amber-700 font-medium">Planerad</span>
+            </div>
+            <p class="text-sm text-gray-600 mb-3">Automatisk generering av extra uppdrag med intervall (vecka/månad/kvartal). Systemen skapar nytt uppdrag när föregående markeras som klart.</p>
+            <div class="flex gap-1.5 flex-wrap">
+              <span class="text-xs px-2 py-0.5 rounded-full bg-blue-100 text-blue-700">Automatisering</span>
+              <span class="text-xs px-2 py-0.5 rounded-full bg-purple-100 text-purple-700">Extra uppdrag</span>
+            </div>
+          </div>
+          <div class="text-right text-xs text-gray-400 flex-shrink-0">
+            <div class="font-semibold text-amber-600">HÖG</div>
+            <div>~2 dagar</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 4. PWA -->
+      <div class="bg-white rounded-xl border border-gray-200 p-5 card-hover">
+        <div class="flex items-start justify-between gap-3">
+          <div class="flex-1">
+            <div class="flex items-center gap-2 mb-1">
+              <span class="text-xs font-mono text-gray-400">#4</span>
+              <h3 class="font-bold text-gray-900">PWA + Push-notifikationer</h3>
+              <span class="text-xs px-2 py-0.5 rounded-full bg-amber-100 text-amber-700 font-medium">Planerad</span>
+            </div>
+            <p class="text-sm text-gray-600 mb-3">Installera appen på telefon som en riktig app. Push-notiser direkt till telefonen — inte bara i webbläsaren. Offline-stöd för grundläggande funktioner.</p>
+            <div class="flex gap-1.5 flex-wrap">
+              <span class="text-xs px-2 py-0.5 rounded-full bg-blue-100 text-blue-700">Mobil</span>
+              <span class="text-xs px-2 py-0.5 rounded-full bg-green-100 text-green-700">UX</span>
+            </div>
+          </div>
+          <div class="text-right text-xs text-gray-400 flex-shrink-0">
+            <div class="font-semibold text-amber-600">HÖG</div>
+            <div>~3 dagar</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 5. Email påminnelser -->
+      <div class="bg-white rounded-xl border border-gray-200 p-5 card-hover">
+        <div class="flex items-start justify-between gap-3">
+          <div class="flex-1">
+            <div class="flex items-center gap-2 mb-1">
+              <span class="text-xs font-mono text-gray-400">#5</span>
+              <h3 class="font-bold text-gray-900">Automatiska e-postpåminnelser</h3>
+              <span class="text-xs px-2 py-0.5 rounded-full bg-amber-100 text-amber-700 font-medium">Planerad</span>
+            </div>
+            <p class="text-sm text-gray-600 mb-3">Automatisk påminnelse till anställda som inte registrerat timmar. Påminnelse för extra uppdrag som närmar sig deadline. Veckoresumé till admin.</p>
+            <div class="flex gap-1.5 flex-wrap">
+              <span class="text-xs px-2 py-0.5 rounded-full bg-blue-100 text-blue-700">Automatisering</span>
+              <span class="text-xs px-2 py-0.5 rounded-full bg-green-100 text-green-700">E-post</span>
+            </div>
+          </div>
+          <div class="text-right text-xs text-gray-400 flex-shrink-0">
+            <div class="font-semibold text-amber-600">HÖG</div>
+            <div>~2 dagar</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ===== PHASE 2: MEDIUM PRIORITY ===== -->
+  <section>
+    <div class="flex items-center gap-3 mb-6">
+      <div class="w-10 h-10 rounded-xl status-planned flex items-center justify-center text-white text-lg shadow-md">2</div>
+      <div>
+        <h2 class="text-xl font-bold text-gray-900">Medel prioritet — Effektivisering</h2>
+        <p class="text-sm text-gray-500">Funktioner som sparar tid och minskar manuellt arbete</p>
+      </div>
+    </div>
+
+    <div class="grid gap-4">
+
+      <!-- 6. Skiftbyte -->
+      <div class="bg-white rounded-xl border border-gray-200 p-5 card-hover">
+        <div class="flex items-start justify-between gap-3">
+          <div class="flex-1">
+            <div class="flex items-center gap-2 mb-1">
+              <span class="text-xs font-mono text-gray-400">#6</span>
+              <h3 class="font-bold text-gray-900">Skiftbyte mellan anställda</h3>
+            </div>
+            <p class="text-sm text-gray-600 mb-3">Anställd begär byte, kollega accepterar, admin godkänner. Minskar administrationsarbete vid sjukdom eller förhinder.</p>
+            <div class="flex gap-1.5">
+              <span class="text-xs px-2 py-0.5 rounded-full bg-indigo-100 text-indigo-700">Schema</span>
+              <span class="text-xs px-2 py-0.5 rounded-full bg-purple-100 text-purple-700">Personal</span>
+            </div>
+          </div>
+          <div class="text-right text-xs text-gray-400"><div class="font-semibold text-indigo-600">MEDEL</div><div>~3 dagar</div></div>
+        </div>
+      </div>
+
+      <!-- 7. Fortnox -->
+      <div class="bg-white rounded-xl border border-gray-200 p-5 card-hover">
+        <div class="flex items-start justify-between gap-3">
+          <div class="flex-1">
+            <div class="flex items-center gap-2 mb-1">
+              <span class="text-xs font-mono text-gray-400">#7</span>
+              <h3 class="font-bold text-gray-900">Fortnox / Visma-integration</h3>
+            </div>
+            <p class="text-sm text-gray-600 mb-3">Automatisk synkronisering av fakturor och löner med bokföringsprogrammet. Eliminerar manuell dubbelregistrering.</p>
+            <div class="flex gap-1.5">
+              <span class="text-xs px-2 py-0.5 rounded-full bg-indigo-100 text-indigo-700">Integration</span>
+              <span class="text-xs px-2 py-0.5 rounded-full bg-green-100 text-green-700">Ekonomi</span>
+            </div>
+          </div>
+          <div class="text-right text-xs text-gray-400"><div class="font-semibold text-indigo-600">MEDEL</div><div>~5 dagar</div></div>
+        </div>
+      </div>
+
+      <!-- 8. Avtalsgenerator -->
+      <div class="bg-white rounded-xl border border-gray-200 p-5 card-hover">
+        <div class="flex items-start justify-between gap-3">
+          <div class="flex-1">
+            <div class="flex items-center gap-2 mb-1">
+              <span class="text-xs font-mono text-gray-400">#8</span>
+              <h3 class="font-bold text-gray-900">Avtalsgenerator (PDF)</h3>
+            </div>
+            <p class="text-sm text-gray-600 mb-3">Automatiskt skapande av kundavtal vid ny kund (Lead VUNNEN). Förifylld PDF med namn, adress, pris, frekvens, villkor.</p>
+            <div class="flex gap-1.5">
+              <span class="text-xs px-2 py-0.5 rounded-full bg-indigo-100 text-indigo-700">Försäljning</span>
+              <span class="text-xs px-2 py-0.5 rounded-full bg-purple-100 text-purple-700">PDF</span>
+            </div>
+          </div>
+          <div class="text-right text-xs text-gray-400"><div class="font-semibold text-indigo-600">MEDEL</div><div>~2 dagar</div></div>
+        </div>
+      </div>
+
+      <!-- 9. Activity log -->
+      <div class="bg-white rounded-xl border border-gray-200 p-5 card-hover">
+        <div class="flex items-start justify-between gap-3">
+          <div class="flex-1">
+            <div class="flex items-center gap-2 mb-1">
+              <span class="text-xs font-mono text-gray-400">#9</span>
+              <h3 class="font-bold text-gray-900">Aktivitetslogg (audit trail)</h3>
+            </div>
+            <p class="text-sm text-gray-600 mb-3">Central vy för alla systemhändelser: vem ändrade vad, när. Schema-, faktura-, användarändringar. Filtrera per person/typ/datum.</p>
+            <div class="flex gap-1.5">
+              <span class="text-xs px-2 py-0.5 rounded-full bg-indigo-100 text-indigo-700">Admin</span>
+              <span class="text-xs px-2 py-0.5 rounded-full bg-red-100 text-red-700">Säkerhet</span>
+            </div>
+          </div>
+          <div class="text-right text-xs text-gray-400"><div class="font-semibold text-indigo-600">MEDEL</div><div>~3 dagar</div></div>
+        </div>
+      </div>
+
+      <!-- 10. Anställd dashboard -->
+      <div class="bg-white rounded-xl border border-gray-200 p-5 card-hover">
+        <div class="flex items-start justify-between gap-3">
+          <div class="flex-1">
+            <div class="flex items-center gap-2 mb-1">
+              <span class="text-xs font-mono text-gray-400">#10</span>
+              <h3 class="font-bold text-gray-900">Anställd — månadsdashboard</h3>
+            </div>
+            <p class="text-sm text-gray-600 mb-3">Personlig översikt: arbetade timmar denna månad, jämförelse med förra, uppskattad lön, kommande pass, frånvarodagar kvar.</p>
+            <div class="flex gap-1.5">
+              <span class="text-xs px-2 py-0.5 rounded-full bg-indigo-100 text-indigo-700">Anställd</span>
+              <span class="text-xs px-2 py-0.5 rounded-full bg-green-100 text-green-700">UX</span>
+            </div>
+          </div>
+          <div class="text-right text-xs text-gray-400"><div class="font-semibold text-indigo-600">MEDEL</div><div>~2 dagar</div></div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ===== PHASE 3: FUTURE / IDEAS ===== -->
+  <section>
+    <div class="flex items-center gap-3 mb-6">
+      <div class="w-10 h-10 rounded-xl status-idea flex items-center justify-center text-white text-lg shadow-md">3</div>
+      <div>
+        <h2 class="text-xl font-bold text-gray-900">Framtida idéer — Innovation</h2>
+        <p class="text-sm text-gray-500">Avancerade funktioner för skalning och konkurrensfördelar</p>
+      </div>
+    </div>
+
+    <div class="grid gap-4">
+
+      <div class="bg-white rounded-xl border border-gray-200 p-5 card-hover">
+        <div class="flex items-start justify-between gap-3">
+          <div class="flex-1">
+            <div class="flex items-center gap-2 mb-1">
+              <span class="text-xs font-mono text-gray-400">#11</span>
+              <h3 class="font-bold text-gray-900">AI-schemaläggning</h3>
+            </div>
+            <p class="text-sm text-gray-600">Automatisk optimal schemafördelning baserat på avstånd, arbetstid och kompetens. AI föreslår bästa tilldelning vid luckor.</p>
+          </div>
+          <div class="text-right text-xs text-gray-400"><div class="font-semibold text-purple-600">IDÉ</div></div>
+        </div>
+      </div>
+
+      <div class="bg-white rounded-xl border border-gray-200 p-5 card-hover">
+        <div class="flex items-start justify-between gap-3">
+          <div class="flex-1">
+            <div class="flex items-center gap-2 mb-1">
+              <span class="text-xs font-mono text-gray-400">#12</span>
+              <h3 class="font-bold text-gray-900">Ruttoptimering</h3>
+            </div>
+            <p class="text-sm text-gray-600">Optimal besöksordning för anställda med flera objekt per dag. Google Maps API-integration med realtidsavstånd.</p>
+          </div>
+          <div class="text-right text-xs text-gray-400"><div class="font-semibold text-purple-600">IDÉ</div></div>
+        </div>
+      </div>
+
+      <div class="bg-white rounded-xl border border-gray-200 p-5 card-hover">
+        <div class="flex items-start justify-between gap-3">
+          <div class="flex-1">
+            <div class="flex items-center gap-2 mb-1">
+              <span class="text-xs font-mono text-gray-400">#13</span>
+              <h3 class="font-bold text-gray-900">Lagerhantering / materialstatus</h3>
+            </div>
+            <p class="text-sm text-gray-600">Lagersaldo per objekt/förråd, automatisk beställning vid lågt lager, leverantörskoppling.</p>
+          </div>
+          <div class="text-right text-xs text-gray-400"><div class="font-semibold text-purple-600">IDÉ</div></div>
+        </div>
+      </div>
+
+      <div class="bg-white rounded-xl border border-gray-200 p-5 card-hover">
+        <div class="flex items-start justify-between gap-3">
+          <div class="flex-1">
+            <div class="flex items-center gap-2 mb-1">
+              <span class="text-xs font-mono text-gray-400">#14</span>
+              <h3 class="font-bold text-gray-900">Realtids-geofencing</h3>
+            </div>
+            <p class="text-sm text-gray-600">Kontinuerlig GPS-övervakning under pass. Automatiskt check-out vid lämnad zon. Varning om personal inte befinner sig på plats.</p>
+          </div>
+          <div class="text-right text-xs text-gray-400"><div class="font-semibold text-purple-600">IDÉ</div></div>
+        </div>
+      </div>
+
+      <div class="bg-white rounded-xl border border-gray-200 p-5 card-hover">
+        <div class="flex items-start justify-between gap-3">
+          <div class="flex-1">
+            <div class="flex items-center gap-2 mb-1">
+              <span class="text-xs font-mono text-gray-400">#15</span>
+              <h3 class="font-bold text-gray-900">Tvåfaktorsautentisering (2FA)</h3>
+            </div>
+            <p class="text-sm text-gray-600">Extra säkerhetslager för admin-konton. TOTP (Google Authenticator) eller SMS-baserad verifiering vid inloggning.</p>
+          </div>
+          <div class="text-right text-xs text-gray-400"><div class="font-semibold text-purple-600">IDÉ</div></div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Legend -->
+  <div class="bg-white rounded-xl border border-gray-200 p-5">
+    <h3 class="font-bold text-gray-800 text-sm mb-3">Statusförklaring</h3>
+    <div class="flex flex-wrap gap-4 text-xs">
+      <div class="flex items-center gap-2">
+        <span class="w-3 h-3 rounded-full status-done"></span>
+        <span class="text-gray-600">Implementerat</span>
+      </div>
+      <div class="flex items-center gap-2">
+        <span class="w-3 h-3 rounded-full status-active"></span>
+        <span class="text-gray-600">Hög prioritet</span>
+      </div>
+      <div class="flex items-center gap-2">
+        <span class="w-3 h-3 rounded-full status-planned"></span>
+        <span class="text-gray-600">Medel prioritet</span>
+      </div>
+      <div class="flex items-center gap-2">
+        <span class="w-3 h-3 rounded-full status-idea"></span>
+        <span class="text-gray-600">Framtida idé</span>
+      </div>
+    </div>
+  </div>
+
+</main>
+
+<footer class="text-center py-8 text-xs text-gray-400">
+  Filteo AB &middot; filteo.se &middot; Uppdaterad april 2026
+</footer>
+
 </body>
 </html>
